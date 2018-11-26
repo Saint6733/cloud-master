@@ -9,9 +9,10 @@
 	<modules>
 		<module>api-gateway</module>
 		<module>security-oauth2</module>
-		<module>message-stream</module>
+		<module>stream-kafka</module>
 		<module>store-document</module>
 		<module>common</module>
+		<module>sleuth-zipkin</module>
 	</modules>
 	<packaging>pom</packaging>
 
@@ -222,10 +223,7 @@
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+
 		</plugins>
 	</build>
 
