@@ -6,7 +6,13 @@
 	<groupId>com.cloud</groupId>
 	<artifactId>master</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<modules>
+		<module>api-gateway</module>
+		<module>security-oauth2</module>
+		<module>message-stream-kafka</module>
+		<module>store-document</module>
+	</modules>
+	<packaging>pom</packaging>
 
 	<name>cloud-master</name>
 	<description>Demo project for Spring Cloud</description>
