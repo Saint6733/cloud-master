@@ -23,7 +23,6 @@
 hs_err_pid*
 
 /target/
-!.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
 .apt_generated
@@ -46,4 +45,6 @@ hs_err_pid*
 /nbbuild/
 /dist/
 /nbdist/
-/.nb-gradle/
+/.nb-gradle/.mvn/
+.idea/
+.mvn/
