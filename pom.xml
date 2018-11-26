@@ -9,7 +9,7 @@
 	<modules>
 		<module>api-gateway</module>
 		<module>security-oauth2</module>
-		<module>message-stream-kafka</module>
+		<module>message-stream</module>
 		<module>store-document</module>
 	</modules>
 	<packaging>pom</packaging>

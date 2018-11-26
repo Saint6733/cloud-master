@@ -9,7 +9,7 @@
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>message-stream-kafka</artifactId>
+	<artifactId>message-stream</artifactId>
 
 
 </project>
