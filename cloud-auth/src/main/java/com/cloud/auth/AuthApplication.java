@@ -18,24 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@RestController
 public class AuthApplication {
 	
-	@Autowired
-	private DiscoveryClient discoveryClient;
-	
-	/**
-	 * 获取所有服务
-	 */
-	@RequestMapping("/services")
-	public Object services() {
-		return discoveryClient.getServices();
-	}
-	
-	@RequestMapping("/home")
-	public String home() {
-		return "Hello World";
-	}
 	
 	public static void main(String[] args) {
 		SpringApplication.run(AuthApplication.class,args);
