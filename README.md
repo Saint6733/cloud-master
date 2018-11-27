@@ -1,5 +1,7 @@
 # cloud-master
 ## 基于Spring Cloud
-> 架构图
+### Consul的安装
+> 参照/docs/md/consul.md
 
-![avatar](https://github.com/Saint6733/cloud-master/raw/master/imgs/Cloud-Master.jpg)
+### 架构图
+> ![avatar](https://github.com/Saint6733/cloud-master/raw/master/imgs/Cloud-Master.jpg)
