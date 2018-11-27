@@ -12,6 +12,8 @@ spring:
         prefix: config
         defaultContext: ${spring.application.name}
         data-key: dev
+        watch:
+          enabled: true
       discovery:
         register: true
         instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
@@ -20,6 +22,7 @@ spring:
           ttlValue: 10
         healthCheckPath: /actuator/health
         healthCheckInterval: 10s
+        health-check-timeout: 10s
         enabled: true
         tags: urlprefix-${spring.application.name}
         default-query-tag: urlprefix-${spring.application.name}
@@ -28,7 +31,14 @@ spring:
 server:
   port: 8081
 management:
+  security:
+    enabled: false
   endpoints:
     web:
       exposure:
         include: "*"
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: false
