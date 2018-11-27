@@ -7,12 +7,12 @@
 	<artifactId>master</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<modules>
-		<module>api-gateway</module>
-		<module>security-oauth2</module>
-		<module>stream-kafka</module>
-		<module>store-document</module>
-		<module>common</module>
-		<module>sleuth-zipkin</module>
+		<module>cloud-gateway</module>
+		<module>cloud-auth</module>
+		<module>cloud-stream</module>
+		<module>cloud-store</module>
+		<module>cloud-common</module>
+		<module>cloud-sleuth</module>
 	</modules>
 	<packaging>pom</packaging>
 
@@ -220,12 +220,6 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
-	<build>
-		<plugins>
-
-		</plugins>
-	</build>
 
 	<repositories>
 		<repository>
