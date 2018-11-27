@@ -31,7 +31,7 @@
         </encoder>
     </appender>
 
-    <logger name="com.sinochem.user" level="DEBUG" additivity="false">
+    <logger name="com.cloud.auth" level="DEBUG" additivity="false">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="FILE" />
     </logger>

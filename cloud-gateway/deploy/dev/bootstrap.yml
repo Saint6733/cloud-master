@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: cloud-gateway
+  cloud:
+    consul:
+      enabled: true
+      host: 127.0.0.1
+      port: 8500
+      config:
+        enabled: true
+        format: YAML
+      discovery:
+        register: true
+        instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+        heartbeat:
+          enabled: true
+          ttlValue: 10
+        healthCheckPath: /actuator/health
+        healthCheckInterval: 10s
+        enabled: true
+        tags: urlprefix-/${spring.application.name}
+        default-query-tag: urlprefix-/${spring.application.name}
+        query-passing: true
+        preferIpAddress: true
+server:
+  port: 8082
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

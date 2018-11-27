@@ -9,7 +9,7 @@
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>sleuth-zipkin</artifactId>
+	<artifactId>cloud-sleuth</artifactId>
 
 	<build>
 		<finalName>${project.artifactId}</finalName>

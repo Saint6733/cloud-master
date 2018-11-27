@@ -9,7 +9,7 @@
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>stream-kafka</artifactId>
+	<artifactId>cloud-stream</artifactId>
 
 	<build>
 		<finalName>${project.artifactId}</finalName>
