@@ -17,7 +17,7 @@
 
 
 
-##Spring Cloud Consul配置
+## Spring Cloud Consul配置
 > debug配置是否调试模式，如果打包发布的话，需要设置为false。  
 server.port配置的是 Spring Boot 服务的端口。  
 spring.cloud.consul.host/port配置的是本地 Consul 的地址和端口（Server 节点和 Client 节点都可以），Spring Cloud Consul 会调用 Consul HTTP REST 接口，进行服务注册。  
