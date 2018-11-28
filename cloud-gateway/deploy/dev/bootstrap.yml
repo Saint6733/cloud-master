@@ -40,16 +40,3 @@ spring:
         max-interval: 3000
 server:
   port: 8082
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-  endpoint:
-    health:
-      show-details: always
-      enabled: true
-    shutdown:
-      enabled: false
-    consul:
-      enabled: true

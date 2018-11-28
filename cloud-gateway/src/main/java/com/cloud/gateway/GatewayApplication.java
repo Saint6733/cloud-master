@@ -3,6 +3,7 @@ package com.cloud.gateway;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * 类名称：GatewayApplication<br>
@@ -14,6 +15,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
+@ComponentScan(basePackages = {"org.springframework.http.codec"})
 public class GatewayApplication {
 	
 	public static void main(String[] args) {
