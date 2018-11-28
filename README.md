@@ -1,5 +1,5 @@
 # cloud-master
-## 基于Spring Cloud
+## 基于Spring Cloud Greenwich.M3
 ### Consul的安装
 > 参照/docs/md/consul.md
 
