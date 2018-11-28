@@ -17,7 +17,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 public class StreamApplication {
 	
 	public static void main(String[] args) {
-		SpringApplication.run(StreamApplication.class,args);
+		SpringApplication.run(StreamApplication.class, args);
 	}
 	
 }

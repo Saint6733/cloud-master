@@ -17,7 +17,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 public class SleuthApplication {
 	
 	public static void main(String[] args) {
-		SpringApplication.run(SleuthApplication.class,args);
+		SpringApplication.run(SleuthApplication.class, args);
 	}
 	
 }
