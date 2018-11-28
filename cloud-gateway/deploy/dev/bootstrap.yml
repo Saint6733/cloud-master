@@ -12,8 +12,10 @@ spring:
         prefix: config
         defaultContext: ${spring.application.name}
         data-key: dev
+        failFast: false
         watch:
           enabled: true
+          delay: 500
       discovery:
         register: true
         instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
@@ -22,11 +24,20 @@ spring:
           ttlValue: 10
         healthCheckPath: /actuator/health
         healthCheckInterval: 10s
+        health-check-timeout: 10s
+        health-check-headers:
+          X-Config-Token:
+            - "6442e58b-d1ea-182e-cfa5-cf9cddef0722"
+            - "Some other value"
         enabled: true
-        tags: urlprefix-/${spring.application.name}
-        default-query-tag: urlprefix-/${spring.application.name}
+        tags: tag=urlprefix-${spring.application.name}
+        default-query-tag: urlprefix-${spring.application.name}
         query-passing: true
         preferIpAddress: true
+      retry:
+        max-attempts: 10
+        initial-interval: 1000
+        max-interval: 3000
 server:
   port: 8082
 management:
@@ -34,3 +45,11 @@ management:
     web:
       exposure:
         include: "*"
+  endpoint:
+    health:
+      show-details: always
+      enabled: true
+    shutdown:
+      enabled: false
+    consul:
+      enabled: true
