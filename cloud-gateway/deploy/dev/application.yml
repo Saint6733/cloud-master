@@ -18,7 +18,7 @@ spring:
       enabled: true
       routes:
         - id: after_route
-          uri: http://localhost
+          uri: http://192.168.1.1
           predicates:
             - Before=2017-01-20T17:42:47.789-07:00[America/Denver]
             - Between=2017-01-20T17:42:47.789-07:00[America/Denver], 2017-01-21T17:42:47.789-07:00[America/Denver]

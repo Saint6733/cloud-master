@@ -39,17 +39,17 @@ spring:
         initial-interval: 1000
         max-interval: 3000
 management:
-  server:
-    servlet:
-      context-path: /foo
   endpoints:
     web:
       exposure:
         include: "*"
-      path-mapping:
-        health: /ping
   endpoint:
     health:
-      show-details: ALWAYS
+      show-details: always
+      enabled: true
+    shutdown:
+      enabled: false
+    consul:
+      enabled: true
 server:
   port: 8082
