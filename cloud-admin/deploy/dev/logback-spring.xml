@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 	<property name="LOG_HOME" value="log"/>
-	<property name="APP_NAME" value="cloud-sleuth"/>
+	<property name="APP_NAME" value="cloud-admin"/>
 
 	<conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
 	<conversionRule conversionWord="wex"
@@ -33,7 +33,7 @@
 		</encoder>
 	</appender>
 
-	<logger name="com.cloud.sleuth" level="DEBUG" additivity="false">
+	<logger name="com.cloud.gateway" level="DEBUG" additivity="false">
 		<appender-ref ref="STDOUT"/>
 		<appender-ref ref="FILE"/>
 	</logger>

@@ -13,3 +13,33 @@ spring:
       connection-test-query: "select 1"
       validation-timeout: 1000
       isolate-internal-queries: true
+  cloud:
+    gateway:
+      enabled: true
+      routes:
+        - id: after_route
+          uri: http://192.168.1.1
+          predicates:
+            - Before=2017-01-20T17:42:47.789-07:00[America/Denver]
+            - Between=2017-01-20T17:42:47.789-07:00[America/Denver], 2017-01-21T17:42:47.789-07:00[America/Denver]
+            - After=2017-01-20T17:42:47.789-07:00[America/Denver]
+            - Cookie=chocolate, ch.p
+            - Header=X-Request-Id, \d+
+            - Host=localhost
+            - Method=GET
+            - Path=/foo/{segment}
+            - Query=foo, ba.
+            - RemoteAddr=192.168.1.1/24
+          filters:
+            - AddRequestHeader=X-Request-Foo, Bar
+            - AddRequestParameter=foo, bar
+            - AddResponseHeader=X-Response-Foo, Bar
+            - Hystrix=myCommandName
+        - id: ingredients-fallback
+          uri: http://localhost:9994
+          predicates:
+            - Path=/fallback
+  security:
+    user:
+      name: admin
+      password: admin

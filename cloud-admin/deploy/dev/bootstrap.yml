@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: cloud-admin
+  cloud:
+#    discovery:
+#      client:
+#        simple:
+#          instances:
+#            cloud-auth:
+#              - uri: http://localhost:8081
+#                metadata:
+#                  management.context-path: /actuator
+#            cloud-gateway:
+#              - uri: http://localhost:8882
+#                metadata:
+#                  management.context-path: /actuator
+#            cloud-sleuth:
+#              - uri: http://localhost:8083
+#                metadata:
+#                  management.context-path: /actuator
+#            cloud-store:
+#              - uri: http://localhost:8084
+#                metadata:
+#                  management.context-path: /actuator
+#            cloud-stream:
+#              - uri: http://localhost:8085
+#                metadata:
+#                  management.context-path: /actuator
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        tags: management.context-path=/foo, health.path=/ping
+  boot:
+    admin:
+      discovery:
+        ignored-services: consul
+management:
+  server:
+    servlet:
+      context-path: /foo
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      path-mapping:
+        health: /ping
+  endpoint:
+    health:
+      show-details: ALWAYS
+server:
+  port: 8888
