@@ -39,3 +39,7 @@ spring:
           uri: http://localhost:9994
           predicates:
             - Path=/fallback
+  security:
+    user:
+      name: admin
+      password: admin
