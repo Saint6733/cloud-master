@@ -37,7 +37,7 @@
 		<appender-ref ref="STDOUT"/>
 		<appender-ref ref="FILE"/>
 	</logger>
-	<logger name="org.springframework.security" level="DEBUG" additivity="false">
+	<logger name="org.springframework" level="DEBUG" additivity="false">
 		<appender-ref ref="STDOUT"/>
 	</logger>
 
