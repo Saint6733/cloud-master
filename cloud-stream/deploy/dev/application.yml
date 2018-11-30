@@ -4,7 +4,7 @@ spring:
     username: root
     password: root
     hikari:
-      pool-name: mysql/ds1
+      pool-name: gold_goods/ds1
       connection-timeout: 45000
       idle-timeout: 600000
       max-lifetime: 1800000

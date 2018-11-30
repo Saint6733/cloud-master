@@ -13,3 +13,9 @@ spring:
       connection-test-query: "select 1"
       validation-timeout: 1000
       isolate-internal-queries: true
+
+data:
+    mongodb:
+      uri: mongodb://localhost:27017/test
+      username: root
+      password: root
