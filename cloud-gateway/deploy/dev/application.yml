@@ -16,12 +16,27 @@ spring:
   cloud:
     gateway:
       enabled: true
+      discovery:
+        locator:
+          lowerCaseServiceId: true
+          enabled: true
       routes:
-        - id: auth
-          uri: http://localhost:8081/hello
-          order: 0
+        - id: cloud-auth
+          uri: lb://cloud-auth
           predicates:
-            - Path=/hello
+            - Path=/auth/**
+#        - id: cloud-stream
+#          uri: http://localhost:8085/**
+#          predicates:
+#            - Path=/cloud-stream/**
+#        - id: cloud-store
+#          uri: http://localhost:8084/**
+#          predicates:
+#            - Path=/cloud-store/**
+#        - id: cloud-sleuth
+#          uri: http://localhost:8083/**
+#          predicates:
+#            - Path=/cloud-sleuth/**
 #        - id: after_route
 #          uri: http://192.168.1.1
 #          predicates:
