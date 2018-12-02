@@ -1,9 +1,7 @@
 package com.cloud.gateway.config;
 
-import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.cloud.gateway.discovery.DiscoveryClientRouteDefinitionLocator;
-import org.springframework.cloud.gateway.route.RouteDefinitionLocator;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -23,6 +21,7 @@ import reactor.core.publisher.Mono;
  * @author 冯亚鹏
  * @version 1.0.0
  */
+@Configuration
 public class RouteConfiguration {
 	
 	private static final String ALLOWED_HEADERS = "x-requested-with, authorization, Content-Type, Authorization, credential, X-XSRF-TOKEN,token,username,client";
@@ -51,13 +50,5 @@ public class RouteConfiguration {
 			}
 			return chain.filter(ctx);
 		};
-	}
-	/**
-	 *
-	 *如果使用了注册中心（如：Consul），进行控制则需要增加如下配置
-	 */
-	@Bean
-	public RouteDefinitionLocator discoveryClientRouteDefinitionLocator(DiscoveryClient discoveryClient) {
-		return new DiscoveryClientRouteDefinitionLocator(discoveryClient,null);
 	}
 }

@@ -1,9 +1,15 @@
 package com.cloud.gateway;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * 类名称：GatewayApplication<br>
@@ -15,8 +21,20 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@ComponentScan(basePackages = {"org.springframework.http.codec"})
+@RestController
 public class GatewayApplication {
+	
+	@Autowired
+	private DiscoveryClient discoveryClient;
+	
+	@GetMapping("/services")
+	public String serviceUrl() {
+		List<ServiceInstance> list = discoveryClient.getInstances("cloud-auth");
+		if (list != null && list.size() > 0 ) {
+			return list.get(0).getUri().toString();
+		}
+		return null;
+	}
 	
 	public static void main(String[] args) {
 		SpringApplication.run(GatewayApplication.class, args);

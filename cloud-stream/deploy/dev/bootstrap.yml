@@ -30,8 +30,8 @@ spring:
             - "6442e58b-d1ea-182e-cfa5-cf9cddef0722"
             - "Some other value"
         enabled: true
-        tags: tag=urlprefix-${spring.application.name}
-        default-query-tag: urlprefix-${spring.application.name}
+        tags: tag=${spring.application.name}
+        default-query-tag: ${spring.application.name}
         query-passing: true
         preferIpAddress: true
       retry:

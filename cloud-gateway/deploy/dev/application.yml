@@ -16,15 +16,15 @@ spring:
   cloud:
     gateway:
       enabled: true
-      discovery:
-        locator:
-          lowerCaseServiceId: true
-          enabled: true
+      default-filters:
+        - AddResponseHeader=X-Response-Default-Foo, Default-Bar
       routes:
         - id: cloud-auth
           uri: lb://cloud-auth
           predicates:
             - Path=/auth/**
+          filters:
+            - StripPrefix=1
 #        - id: cloud-stream
 #          uri: http://localhost:8085/**
 #          predicates:
