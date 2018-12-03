@@ -21,10 +21,17 @@ spring:
       routes:
         - id: cloud-auth
           uri: lb://cloud-auth
+          order: 0
           predicates:
             - Path=/auth/**
           filters:
             - StripPrefix=1
+#        - id: cloud-stream
+#          uri: lb://cloud-stream
+#          predicates:
+#            - Path=/stream/**
+#          filters:
+#            - StripPrefix=1
 #        - id: cloud-stream
 #          uri: http://localhost:8085/**
 #          predicates:
