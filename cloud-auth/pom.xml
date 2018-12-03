@@ -6,7 +6,13 @@
 	<groupId>com.cloud</groupId>
 	<artifactId>cloud-auth</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<modules>
+		<module>cloud-auth-common</module>
+		<module>cloud-auth-server</module>
+		<module>cloud-auth-resource</module>
+        <module>cloud-auth-client</module>
+    </modules>
+	<packaging>pom</packaging>
 
 	<name>cloud-auth</name>
 	<description>Demo project for Spring Boot</description>
@@ -46,14 +52,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-		<!--<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-oauth2</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-security</artifactId>
-		</dependency>-->
 	</dependencies>
 
 	<profiles>

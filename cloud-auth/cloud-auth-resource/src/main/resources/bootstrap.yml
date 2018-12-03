@@ -1,6 +1,24 @@
+server:
+  port: 9091
+
+auth-server: http://localhost:9090 # 认证服务器地址
+
+security:
+  oauth2:
+    client:
+      client-id: testclient # 授权服务器配置的client id
+      client-secret: testclient # 授权服务器配置的client secret
+      scope: test
+      access-token-uri: ${auth-server}/oauth/token # 获取access token接口
+      user-authorization-uri: ${auth-server}/oauth/authorize #  获取Authorization Code接口
+    resource:
+      token-info-uri: ${auth-server}/oauth/check_token # 验证token的接口
+#      user-info-uri: ${auth-server}/user # 一个可以获取认证授权的自定义接口，可以在授权服务器，也可以在其他服务器上
+#      prefer-token-info: true # 如果同时配置了token-info-uri 和 user-info-uri，这个现象设置使用哪个取验证授权
+
 spring:
   application:
-    name: cloud-auth
+    name: cloud-auth-resource
   cloud:
     consul:
       enabled: true
@@ -30,16 +48,14 @@ spring:
             - "6442e58b-d1ea-182e-cfa5-cf9cddef0722"
             - "Some other value"
         enabled: true
-        tags: tag=${spring.application.name}
-        default-query-tag: ${spring.application.name}
+        tags: tag=urlprefix-${spring.application.name}
+        default-query-tag: urlprefix-${spring.application.name}
         query-passing: true
         preferIpAddress: true
       retry:
         max-attempts: 10
         initial-interval: 1000
         max-interval: 3000
-server:
-  port: 8081
 management:
   endpoints:
     web:
