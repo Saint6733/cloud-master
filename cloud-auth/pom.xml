@@ -11,7 +11,8 @@
 		<module>cloud-auth-server</module>
 		<module>cloud-auth-resource</module>
         <module>cloud-auth-client</module>
-    </modules>
+		<module>cloud-auth-ssotest</module>
+	</modules>
 	<packaging>pom</packaging>
 
 	<name>cloud-auth</name>

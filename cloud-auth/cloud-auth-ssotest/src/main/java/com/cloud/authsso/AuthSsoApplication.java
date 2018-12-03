@@ -1,4 +1,4 @@
-package com.cloud.authclient;
+package com.cloud.authsso;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,26 +11,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 类名称：authclient<br>
- * 类描述：<br>
+ * 类描述：sso 单点登录服务器<br>
  * 创建时间：2018年12月02日<br>
  *
  * @author 王芳
  * @version 1.0.0
  */
+@EnableOAuth2Sso
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 @RestController
 @Slf4j
-public class AuthclientApplication {
+public class AuthSsoApplication {
 
     public static void main(String[] args) {
-        new SpringApplicationBuilder(AuthclientApplication.class)
+        new SpringApplicationBuilder(AuthSsoApplication.class)
                 .run(args);
     }
     // sso测试接口
-    @GetMapping("/user")
+    @GetMapping("/sso/user")
     public Authentication getUser(Authentication authentication) {
-
-        //TODO 远程调用 资源服务器接口
         LOGGER.info("auth : {}", authentication);
         return authentication;
 

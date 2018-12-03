@@ -39,7 +39,7 @@ public class Oauth2AuthorizationServer extends AuthorizationServerConfigurerAdap
         clients.inMemory()
                 .withClient("testclient")
                 .secret(PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("testclient"))
-                .redirectUris("http://127.0.0.1:9092/user","http://127.0.0.1:9092/login")
+                .redirectUris("http://127.0.0.1:9091/fallback","http://127.0.0.1:9093/login")
                 .scopes("test").authorizedGrantTypes("authorization_code")
                 //设置用户自动授权同意
                 .autoApprove(true);
