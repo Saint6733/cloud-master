@@ -1,5 +1,11 @@
 package com.cloud.gateway.config;
 
+import com.cloud.gateway.filter.GlobalGatewayFilter;
+import org.springframework.cloud.gateway.filter.GatewayFilter;
+import org.springframework.cloud.gateway.filter.OrderedGatewayFilter;
+import org.springframework.cloud.gateway.route.RouteDefinition;
+import org.springframework.cloud.gateway.route.RouteLocator;
+import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
@@ -12,6 +18,8 @@ import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Mono;
+
+import java.util.function.Predicate;
 
 /**
  * 类名称：RouteConfiguration<br>
@@ -51,4 +59,32 @@ public class RouteConfiguration {
 			return chain.filter(ctx);
 		};
 	}
+
+
+	@Bean
+	public RouteLocator streamRouteLocator(RouteLocatorBuilder locatorBuilder){
+		return locatorBuilder.routes().route("cloud-stream",r->r.path("/stream/**")
+                .filters(f->f.stripPrefix(1).prefixPath("/stream").addResponseHeader("X-Response-Foo","Bar"))
+                .uri("lb://cloud-stream")
+        ).build();
+	}
+    @Bean
+	public RouteLocator adminRouteLocator(RouteLocatorBuilder locatorBuilder){
+	    return locatorBuilder.routes().route("cloud-admin",r->r.path("/admin/**")
+                .filters(f->f.stripPrefix(1).prefixPath("/admin").addResponseHeader("X-Response-Foo","Bar"))
+                .uri("lb://cloud-admin")).build();
+    }
+    @Bean
+    public RouteLocator sleuthRouteLocator(RouteLocatorBuilder locatorBuilder){
+        return locatorBuilder.routes().route("cloud-sleuth",r->r.path("/sleuth/**")
+                .filters(f->f.stripPrefix(1).prefixPath("/sleuth").addResponseHeader("X-Response-Foo","Bar"))
+                .uri("lb://cloud-sleuth")).build();
+    }
+
+    @Bean
+    public RouteLocator storeRouteLocator(RouteLocatorBuilder locatorBuilder){
+        return locatorBuilder.routes().route("cloud-store",r->r.path("/store/**")
+                .filters(f->f.stripPrefix(1).prefixPath("/store").addResponseHeader("X-Response-Foo","Bar"))
+                .uri("lb://cloud-store")).build();
+    }
 }
