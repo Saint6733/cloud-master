@@ -66,25 +66,15 @@ public class RouteConfiguration {
 		return locatorBuilder.routes().route("cloud-stream",r->r.path("/stream/**")
                 .filters(f->f.stripPrefix(1).prefixPath("/stream").addResponseHeader("X-Response-Foo","Bar"))
                 .uri("lb://cloud-stream")
-        ).build();
-	}
-    @Bean
-	public RouteLocator adminRouteLocator(RouteLocatorBuilder locatorBuilder){
-	    return locatorBuilder.routes().route("cloud-admin",r->r.path("/admin/**")
+        ).route("cloud-admin",r->r.path("/admin/**")
                 .filters(f->f.stripPrefix(1).prefixPath("/admin").addResponseHeader("X-Response-Foo","Bar"))
-                .uri("lb://cloud-admin")).build();
-    }
-    @Bean
-    public RouteLocator sleuthRouteLocator(RouteLocatorBuilder locatorBuilder){
-        return locatorBuilder.routes().route("cloud-sleuth",r->r.path("/sleuth/**")
+                .uri("lb://cloud-admin")
+        ).route("cloud-sleuth",r->r.path("/sleuth/**")
                 .filters(f->f.stripPrefix(1).prefixPath("/sleuth").addResponseHeader("X-Response-Foo","Bar"))
-                .uri("lb://cloud-sleuth")).build();
-    }
-
-    @Bean
-    public RouteLocator storeRouteLocator(RouteLocatorBuilder locatorBuilder){
-        return locatorBuilder.routes().route("cloud-store",r->r.path("/store/**")
+                .uri("lb://cloud-sleuth")
+        ).route("cloud-store",r->r.path("/store/**")
                 .filters(f->f.stripPrefix(1).prefixPath("/store").addResponseHeader("X-Response-Foo","Bar"))
                 .uri("lb://cloud-store")).build();
-    }
+	}
+
 }
