@@ -19,20 +19,27 @@
 		</encoder>
 	</appender>
 
+	<!--Appender主要用于指定日志输出的目的地
+		class:RollingFileAppender  ==>滚动记录日志
+	-->
 	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!--被写入的文件名，可以是相对目录，也可以是绝对目录-->
 		<file>${LOG_HOME}/${APP_NAME}/fileout.log</file>
+		<!--当发生滚动时，决定RollingFileAppender的行为，涉及文件移动和重命名。属性class定义具体的滚动策略类-->
 		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
 			<!-- rollover daily -->
 			<fileNamePattern>${LOG_HOME}/${APP_NAME}/fileout-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
 			<!-- each file should be at most 100MB, keep 60 days worth of history, but at most 20GB -->
 			<maxFileSize>500MB</maxFileSize>
+			<!--最大数量，超出这个数量就会删除旧的日志-->
 			<maxHistory>100</maxHistory>
 		</rollingPolicy>
+		<!--对记录事件进行格式化，负责两件事，一是把日志信息转换成字节数组，二是把字节数组写入到输出流。-->
 		<encoder>
 			<pattern>%date %level [%thread] %logger [%file:%line] - %msg%n%ex</pattern>
 		</encoder>
 	</appender>
-
+	<!--日志记录器-->
 	<logger name="com.cloud.gateway" level="DEBUG" additivity="false">
 		<appender-ref ref="STDOUT"/>
 		<appender-ref ref="FILE"/>
@@ -40,7 +47,6 @@
 	<logger name="org.springframework" level="DEBUG" additivity="false">
 		<appender-ref ref="STDOUT"/>
 	</logger>
-
 	<root level="INFO">
 		<appender-ref ref="STDOUT"/>
 		<appender-ref ref="FILE"/>
