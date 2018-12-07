@@ -39,6 +39,10 @@ public class KafkaReceiver {
         System.out.println("receive2接收到消息：" + vote);
     }*/
 
+    /**
+     * 只监听消息头为“aa”的消息
+     * @param vote
+     */
     @StreamListener(value = MyBinding.INPUT_2 , condition = "headers['flag']=='aa'")
     private void receive3(String vote) {
         logger.info("receive3接收到消息 : " + vote);

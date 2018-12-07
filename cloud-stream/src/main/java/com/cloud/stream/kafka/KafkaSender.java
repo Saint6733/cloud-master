@@ -37,6 +37,7 @@ public class KafkaSender {
         }
     }
 
+
     public void sendMessage2(Person person) {
         try {
             source.output1().send(MessageBuilder.withPayload(person).build());
@@ -47,6 +48,10 @@ public class KafkaSender {
         }
     }
 
+    /**
+     * 设置了消息头
+     * @param message
+     */
     public void sendMessage3(String message) {
         try {
             myBinding.output2().send(MessageBuilder.withPayload("消息: " + message)

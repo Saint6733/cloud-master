@@ -30,7 +30,7 @@ spring:
           testa:
             #消息要发往的目的地
             destination: test_stream
-            #分组
+            #分组：同一分组下的消费者，只有一个消费者能消费消息
             group: group-1
             #消费者
             consumer:
