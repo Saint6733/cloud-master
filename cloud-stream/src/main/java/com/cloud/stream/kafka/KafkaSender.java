@@ -17,14 +17,17 @@ import org.springframework.stereotype.Component;
  * @version 1.0.0
  */
 @Component
-@EnableBinding(Source.class)
+@EnableBinding({Source.class,MyBinding.class})
 public class KafkaSender {
     private final Logger logger = LoggerFactory.getLogger(KafkaSender.class);
 
     @Autowired
     private Source source;
 
-    public void sendMessage(String message) {
+    @Autowired
+    private MyBinding myBinding;
+
+    public void sendMessage1(String message) {
         try {
             source.output1().send(MessageBuilder.withPayload("消息: " + message).build());
             System.out.println("消息发送成功！" + message);
@@ -34,7 +37,7 @@ public class KafkaSender {
         }
     }
 
-    public void sendMessage(Person person) {
+    public void sendMessage2(Person person) {
         try {
             source.output1().send(MessageBuilder.withPayload(person).build());
             System.out.println("消息发送成功！");
@@ -43,4 +46,18 @@ public class KafkaSender {
             e.printStackTrace();
         }
     }
+
+    public void sendMessage3(String message) {
+        try {
+            myBinding.output2().send(MessageBuilder.withPayload("消息: " + message)
+                    .setHeader("name","测试")
+                    .setHeader("flag", "aa")
+                    .build());
+            System.out.println("消息发送成功！" + message);
+        } catch (Exception e) {
+            logger.info("消息发送失败，原因："+e);
+            e.printStackTrace();
+        }
+    }
+
 }

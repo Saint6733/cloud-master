@@ -23,12 +23,24 @@ public class SendTest {
 
     @Test
     public void test1(){
-        kafkaSender.sendMessage("这是一条测试消息!");
+        kafkaSender.sendMessage1("这是一条测试消息!");
     }
 
     @Test
     public void test2(){
         Person person = Person.builder().name("张三").age(22).build();
-        kafkaSender.sendMessage(person);
+        kafkaSender.sendMessage2(person);
+    }
+
+    @Test
+    public void test3(){
+        for (int i = 0; i<10; i++){
+            kafkaSender.sendMessage1("asdfghj" + i);
+        }
+    }
+
+    @Test
+    public void test4(){
+        kafkaSender.sendMessage3("这是一条分组测试消息!");
     }
 }

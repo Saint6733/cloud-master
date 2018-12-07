@@ -15,21 +15,41 @@ spring:
       isolate-internal-queries: true
   cloud:
     stream:
+        #使用kafka作为消息中间件
         kafka:
           binder:
+            #消息中间件服务器地址，集群的话加，分隔
             brokers: localhost:9092
             zk-nodes: localhost:2181
+            #最小分区数量
             minPartitionCount: 1
             autoCreateTopics: true
             autoAddPartitions: true
         bindings:
+          #input消息接收方1
           testa:
-            destination: test_spring_stream
+            #消息要发往的目的地
+            destination: test_stream
+            #分组
             group: group-1
+            #消费者
             consumer:
+              #并发
               concurrency: 1
+              #是否开启分区
               partitioned: false
+          #input消息接收方2
+          testb:
+            destination: test_stream
+            #分组
+            group: group-2
+          #output消息发出方1
           sourceA:
+            #消息来源
             destination: test_spring_stream
+            #生产者
             producer:
               partitionCount: 1
+          #output消息发出方2
+          sourceB:
+            destination: test_stream
