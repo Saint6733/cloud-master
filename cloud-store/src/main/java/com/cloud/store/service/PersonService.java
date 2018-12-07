@@ -30,13 +30,13 @@ public interface PersonService {
     /**
      * 查询第1个符合条件的数据
      * @param person {@link Person}
-     * @return {@link Optional< Person >}
+     * @return {@link Optional}
      */
     Optional<Person> findOneByExample(Person person);
 
     /**
      * 查询全部数据
-     * @return {@link List< Person >}
+     * @return {@link List}
      */
     List<Person> findAll();
 
@@ -44,14 +44,14 @@ public interface PersonService {
      * 查询全部数据,排序
      * @param sortType 排序类型(asc:升序; desc:降序)
      * @param sortName 排序字段
-     * @return {@link List< Person >}
+     * @return {@link List<Person>}
      */
     List<Person> findAllOfSort(String sortType, String sortName);
 
     /**
      * 根据条件查询数据
      * @param person {@link Person}
-     * @return {@link List< Person >}
+     * @return {@link List<Person>}
      */
     List<Person> findAllByExample(Person person);
 
@@ -60,13 +60,15 @@ public interface PersonService {
      * @param person {@link Person}
      * @param sortType 排序类型(asc:升序; desc:降序)
      * @param sortName 排序字段
-     * @return {@link List< Person >}
+     * @return {@link List}
      */
     List<Person> findAllOfSrtByExample(Person person, String sortType, String sortName);
 
     /**
      * 查询全部数据,分页
-     * @return {@link Page< Person >}
+     * @param page 页号
+     * @param size 页大小
+     * @return @link Page<Person>}
      */
     Page<Person> findAllOfPage(Integer page, Integer size);
 
@@ -75,7 +77,7 @@ public interface PersonService {
      * @param person {@link Person}
      * @param page 页号
      * @param size 页大小
-     * @return {@link Page< Person >}
+     * @return {@link Page<Person>}
      */
     Page<Person> findAllOfPageByExample(Person person, Integer page, Integer size);
 
@@ -86,7 +88,7 @@ public interface PersonService {
      * @param sortName 排序字段
      * @param page 页号
      * @param size 页大小
-     * @return {@link Page< Person >}
+     * @return {@link Page<Person>}
      */
     Page<Person> findAllOfSortAndPageByExample(Person person, String sortType, String sortName, Integer page, Integer size);
 
@@ -113,8 +115,8 @@ public interface PersonService {
 
     /**
      * 批量添加数据
-     * @param list {@link List< Person >}
-     * @return {@link List< Person >}
+     * @param list {@link List<Person>}
+     * @return {@link List<Person>}
      */
     List<Person> saveAll(List<Person> list);
 
@@ -127,8 +129,8 @@ public interface PersonService {
 
     /**
      * 批量添加数据
-     * @param list {{@link List< Person >}
-     * @return {@link List< Person >}
+     * @param list {{@link List<Person>}
+     * @return {@link List<Person>}
      */
     List<Person> insert(List<Person> list);
 
@@ -145,7 +147,7 @@ public interface PersonService {
 
     /**
      * 删除指定集合数据
-     * @param list {@link List< Person >}
+     * @param list {@link List<Person>}
      */
     void deleteAll(List<Person> list);
 

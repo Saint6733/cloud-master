@@ -9,8 +9,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  * @author shiqianghui
  * @date 2018-12-05
  */
-/**
- * Person是仓库中保存的bean,Long是Person的唯一标识
- */
 public interface PersonDao extends MongoRepository<Person, Long> {
 }
