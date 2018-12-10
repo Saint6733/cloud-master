@@ -23,7 +23,7 @@ public interface MyBinding{
     String OUTPUT_2 = "sourceB";
 
     @Input(MyBinding.INPUT_2)
-    SubscribableChannel input2();
+    MessageChannel input2();
 
     @Output(MyBinding.OUTPUT_2)
     MessageChannel output2();

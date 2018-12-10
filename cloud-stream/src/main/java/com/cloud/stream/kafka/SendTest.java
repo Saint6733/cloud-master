@@ -20,7 +20,6 @@ public class SendTest {
 
     @Autowired
     private KafkaSender kafkaSender;
-
     @Test
     public void test1(){
         kafkaSender.sendMessage1("这是一条测试消息!");

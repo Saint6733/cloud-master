@@ -1,6 +1,7 @@
 package com.cloud.stream.kafka;
 
 import org.springframework.cloud.stream.annotation.Input;
+import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.SubscribableChannel;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +18,6 @@ public interface Sink {
     String INPUT_1 = "testa";
 
     @Input(Sink.INPUT_1)
-    SubscribableChannel input1();
+    MessageChannel input1();
 
 }
