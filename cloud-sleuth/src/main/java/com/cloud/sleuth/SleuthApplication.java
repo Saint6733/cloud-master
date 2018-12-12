@@ -4,6 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 类名称：SleuthApplication<br>
@@ -16,10 +18,14 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @EnableDiscoveryClient
 @ComponentScan(basePackages = {"com.cloud.common"})
+@RestController
 public class SleuthApplication {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SleuthApplication.class, args);
 	}
-	
+	@GetMapping("/hello")
+	public String hello(){
+		return "hello sleuth";
+	}
 }

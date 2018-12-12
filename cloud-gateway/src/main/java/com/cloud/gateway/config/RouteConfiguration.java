@@ -1,9 +1,5 @@
 package com.cloud.gateway.config;
 
-import com.cloud.gateway.filter.GlobalGatewayFilter;
-import org.springframework.cloud.gateway.filter.GatewayFilter;
-import org.springframework.cloud.gateway.filter.OrderedGatewayFilter;
-import org.springframework.cloud.gateway.route.RouteDefinition;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
@@ -19,7 +15,6 @@ import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Mono;
 
-import java.util.function.Predicate;
 
 /**
  * 类名称：RouteConfiguration<br>
@@ -61,8 +56,8 @@ public class RouteConfiguration {
 	}
 
 
-	@Bean
-	public RouteLocator streamRouteLocator(RouteLocatorBuilder locatorBuilder){
+	/*@Bean
+	public RouteLocator routeLocator(RouteLocatorBuilder locatorBuilder){
 		return locatorBuilder.routes().route("cloud-stream",r->r.path("/stream/**")
                 .filters(f->f.stripPrefix(1).prefixPath("/stream").addResponseHeader("X-Response-Foo","Bar"))
                 .uri("lb://cloud-stream")
@@ -72,9 +67,12 @@ public class RouteConfiguration {
         ).route("cloud-sleuth",r->r.path("/sleuth/**")
                 .filters(f->f.stripPrefix(1).prefixPath("/sleuth").addResponseHeader("X-Response-Foo","Bar"))
                 .uri("lb://cloud-sleuth")
-        ).route("cloud-store",r->r.path("/store/**")
-                .filters(f->f.stripPrefix(1).prefixPath("/store").addResponseHeader("X-Response-Foo","Bar"))
-                .uri("lb://cloud-store")).build();
-	}
+        )*//*.route("cloud-store",r->r.path("/store/**")
+                .filters(f->f.stripPrefix(1).prefixPath("/store").addResponseHeader("X-Response-Foo","Bar")
+				)
+                .uri("lb://cloud-store"))*//*.build();
+	}*/
+
+
 
 }

@@ -19,23 +19,30 @@ spring:
       default-filters:
         - AddResponseHeader=X-Response-Default-Foo, Default-Bar
       routes:
-        - id: cloud-auth
-          uri: lb://cloud-auth
-          order: 0
-          predicates:
-            - Path=/auth/**
-          filters:
-            - StripPrefix=1
+#        - id: cloud-auth
+#          uri: lb://cloud-auth
+#          order: 0
+#          predicates:
+#            - Path=/auth/**
+#          filters:
+#            - StripPrefix=1
+#        - id: cloud-store
+#          uri: lb://cloud-store
+#          predicates:
+#            - Path=/store/**
+#          filters:
+#            - StripPrefix=1
+#            - name: Hystrix
+#              args:
+#                name: fallbackcmd
+#                fallbackUri: forward:/fallback
 #        - id: cloud-stream
 #          uri: lb://cloud-stream
 #          predicates:
 #            - Path=/stream/**
 #          filters:
 #            - StripPrefix=1
-#        - id: cloud-store
-#          uri: http://localhost:8084/**
-#          predicates:
-#            - Path=/cloud-store/**
+
 #        - id: cloud-sleuth
 #          uri: http://localhost:8083/**
 #          predicates:
@@ -68,9 +75,9 @@ spring:
         max-active: 50
         max-idle: 10
         min-idle: 0
-        max-wait: 5000
+        max-wait: 5000ms
     database: 0
     host: 127.0.0.1
     port: 6379
     password:
-    timeout: 5000
+    timeout: 5000ms

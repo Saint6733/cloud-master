@@ -1,11 +1,13 @@
 package com.cloud.gateway;
 
+import com.cloud.gateway.service.GatewayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,11 +24,12 @@ import java.util.List;
 @SpringBootApplication
 @EnableDiscoveryClient
 @RestController
+@ComponentScan(basePackages = {"com.cloud.common","com.cloud.gateway"})
 public class GatewayApplication {
 	
 	@Autowired
 	private DiscoveryClient discoveryClient;
-	
+
 	@GetMapping("/services")
 	public String serviceUrl() {
 		List<ServiceInstance> list = discoveryClient.getInstances("cloud-auth");
@@ -35,9 +38,17 @@ public class GatewayApplication {
 		}
 		return null;
 	}
-	
+
+
 	public static void main(String[] args) {
 		SpringApplication.run(GatewayApplication.class, args);
 	}
-	
+
+
+
+	@GetMapping("/fallback")
+	public String fallbackApi(){
+
+		return "Success ! Hystrix";
+	}
 }
