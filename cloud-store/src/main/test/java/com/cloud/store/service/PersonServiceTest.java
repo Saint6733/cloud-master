@@ -198,9 +198,9 @@ public class PersonServiceTest {
     @Test
     public void save() {
         Person person = new Person();
-        person.setId(6L);
-        person.setName("jane");
-        person.setAge(23);
+        person.setId(1L);
+        person.setName("tomm");
+        person.setAge(22);
         Person person1 = personService.save(person);
         System.out.println(person1.getId() + "\t" + person1.getName() + "\t" + person1.getAge());
     }
