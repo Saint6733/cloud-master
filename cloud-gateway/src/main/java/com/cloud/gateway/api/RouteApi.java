@@ -1,10 +1,10 @@
 package com.cloud.gateway.api;
 
+import com.cloud.common.Response.BaseResponse;
 import com.cloud.gateway.domain.GatewayFilterDefinition;
 import com.cloud.gateway.domain.GatewayPredicateDefinition;
 import com.cloud.gateway.domain.GatewayRouteDefinition;
 import com.cloud.gateway.service.GatewayService;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.gateway.filter.FilterDefinition;
 import org.springframework.cloud.gateway.handler.predicate.PredicateDefinition;
 import org.springframework.cloud.gateway.route.RouteDefinition;
@@ -29,17 +29,20 @@ public class RouteApi {
         this.gatewayService = gatewayService;
     }
     @RequestMapping(value = "/route/definition",method = RequestMethod.POST)
-    public String add(@RequestBody GatewayRouteDefinition gatewayRouteDefinition){
+    public BaseResponse add(@RequestBody GatewayRouteDefinition gatewayRouteDefinition){
+        BaseResponse result;
         try {
 
             RouteDefinition definition = assembleRouteDefinition(gatewayRouteDefinition);
             String add = gatewayService.add(definition);
-            return "添加成功";
+            result=new BaseResponse("10102000","新增路由成功",add);
+            result.setSuccess(Boolean.TRUE);
+
         }catch (Exception e){
-            return "添加失败";
+            result=new BaseResponse("10104000","路由新增失败",null);
+            result.setSuccess(Boolean.FALSE);
         }
-
-
+        return result;
     }
     @RequestMapping(value = "/route/definition",method = RequestMethod.PUT)
     public String update(@RequestBody GatewayRouteDefinition gatewayRouteDefinition){
@@ -48,15 +51,29 @@ public class RouteApi {
     }
 
     @RequestMapping(value = "/route/definition/{id}",method = RequestMethod.DELETE)
-    public String delete(@PathVariable String id){
-        String delete = gatewayService.delete(id);
-        return delete;
+    public BaseResponse delete(@PathVariable String id){
+        BaseResponse result;
+        try {
+            String delete = gatewayService.delete(id);
+            result=new BaseResponse("10102000","删除成功",delete);
+            result.setSuccess(Boolean.TRUE);
+        }catch (Exception e){
+            result=new BaseResponse("10104000","删除是啊比",null);
+            result.setSuccess(Boolean.FALSE);
+        }
+       return result;
     }
 
     @GetMapping("/hh")
     public String s(){
         return "123";
     }
+
+    /**
+     * 获取路由配置的属性
+     * @param gwdefinition
+     * @return
+     */
     private RouteDefinition assembleRouteDefinition(GatewayRouteDefinition gwdefinition) {
         RouteDefinition definition = new RouteDefinition();
         List<PredicateDefinition> pdList=new ArrayList<>();
