@@ -1,6 +1,8 @@
 package com.cloud.gateway.config;
 
+import com.cloud.gateway.filter.RateLimitGatewayFilter;
 import org.springframework.cloud.gateway.route.RouteLocator;
+import org.springframework.cloud.gateway.route.builder.GatewayFilterSpec;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +16,8 @@ import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Mono;
+
+import java.time.Duration;
 
 
 /**
@@ -56,9 +60,9 @@ public class RouteConfiguration {
 	}
 
 
-	/*@Bean
+	@Bean
 	public RouteLocator routeLocator(RouteLocatorBuilder locatorBuilder){
-		return locatorBuilder.routes().route("cloud-stream",r->r.path("/stream/**")
+		return locatorBuilder.routes()/*.route("cloud-stream",r->r.path("/stream/**")
                 .filters(f->f.stripPrefix(1).prefixPath("/stream").addResponseHeader("X-Response-Foo","Bar"))
                 .uri("lb://cloud-stream")
         ).route("cloud-admin",r->r.path("/admin/**")
@@ -68,11 +72,10 @@ public class RouteConfiguration {
                 .filters(f->f.stripPrefix(1).prefixPath("/sleuth").addResponseHeader("X-Response-Foo","Bar"))
                 .uri("lb://cloud-sleuth")
         )*//*.route("cloud-store",r->r.path("/store/**")
-                .filters(f->f.stripPrefix(1).prefixPath("/store").addResponseHeader("X-Response-Foo","Bar")
+                .filters(f->f.stripPrefix(1).addResponseHeader("X-Response-Foo","Bar").filter(new RateLimitGatewayFilter(20,2,Duration.ofSeconds(1)))
 				)
-                .uri("lb://cloud-store"))*//*.build();
-	}*/
-
+                .uri("lb://cloud-store"))*/.build();
+	}
 
 
 }

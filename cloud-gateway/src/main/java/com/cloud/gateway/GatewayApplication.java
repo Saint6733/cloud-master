@@ -1,6 +1,5 @@
 package com.cloud.gateway;
 
-import com.cloud.gateway.service.GatewayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

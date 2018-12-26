@@ -26,23 +26,36 @@ spring:
 #            - Path=/auth/**
 #          filters:
 #            - StripPrefix=1
-#        - id: cloud-store
-#          uri: lb://cloud-store
-#          predicates:
-#            - Path=/store/**
-#          filters:
-#            - StripPrefix=1
-#            - name: Hystrix
-#              args:
-#                name: fallbackcmd
-#                fallbackUri: forward:/fallback
+        - id: cloud-store
+          uri: lb://cloud-store
+          predicates:
+            - Path=/store/**
+          filters:
+            - StripPrefix=1
+            - name: Hystrix
+              args:
+                name: fallbackcmd
+                fallbackUri: forward:/fallback
+#              - name:
+#                args:
+#                  key-resolver: #{@remoteAddressResolver}
+#                  #令牌桶每秒填充平均速率
+#                  redis-rate-limiter.replenishRate: 1
+#                  #令牌桶容量
+#                  redis-rate-limiter.burstCapacity: 5
 #        - id: cloud-stream
 #          uri: lb://cloud-stream
 #          predicates:
 #            - Path=/stream/**
 #          filters:
 #            - StripPrefix=1
-
+#            - name:
+#              args:
+#                key-resolver:
+#                #令牌桶每秒填充平均速率
+#                redis-rate-limiter.replenishRate: 1
+#                #令牌桶容量
+#                redis-rate-limiter.burstCapacity: 5
 #        - id: cloud-sleuth
 #          uri: http://localhost:8083/**
 #          predicates:

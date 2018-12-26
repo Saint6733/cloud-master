@@ -48,7 +48,7 @@ public class GatewayService implements ApplicationEventPublisherAware{
     private  RedisUtil redisUtil;
 
 
-    @PostConstruct
+    /*@PostConstruct
     public void route(){
         //路由id和uri
         RouteDefinition definition=new RouteDefinition();
@@ -85,7 +85,7 @@ public class GatewayService implements ApplicationEventPublisherAware{
         //把路由信息放到redis中
         redisUtil.setHashItem(GATEWAY_ROUTES,"cloud-store",JSON.toJSONString(definition));
 
-    }
+    }*/
     /**
      * 增加路由
      *
